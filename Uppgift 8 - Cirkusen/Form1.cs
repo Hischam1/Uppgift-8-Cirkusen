@@ -22,11 +22,14 @@ namespace Uppgift_8___Cirkusen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5433;User Id=administratör;Password=1234;Database=cirkus;");
+
+            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5433;User Id=administratör;Password=1234;Database=uppgift8_cirkus;");
+
+            medlemlista.Clear();
 
             try
             {
-
+             
                 string sql = "SELECT * FROM medlem";
                 connect.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
@@ -43,6 +46,7 @@ namespace Uppgift_8___Cirkusen
                     };
                     medlemlista.Add(m);
                     //MessageBox.Show(dr["förnamn"].ToString());
+
                     listBox1.DisplayMember = "NamnDisplay";
                     listBox1.DataSource = medlemlista;
                 }
@@ -66,7 +70,9 @@ namespace Uppgift_8___Cirkusen
             }
             finally
             {
+             
                 connect.Close();
+                
             }
 
 
