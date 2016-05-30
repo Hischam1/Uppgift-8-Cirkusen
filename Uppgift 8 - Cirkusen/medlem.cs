@@ -23,7 +23,7 @@ namespace Uppgift_8___Cirkusen
         {
             get
             {
-                return medlemsid + " - " + förnamn + " " + efternamn + "\t dggdgddgdd" + "|  " + träningsgruppsnamn + " " ;
+                return medlemsid + " - " + förnamn + " " + efternamn + " " + "\t" + "|  " + träningsgruppsnamn;
             }             
         }
         public BindingList<medlem> medlemlista = new BindingList<medlem>();
