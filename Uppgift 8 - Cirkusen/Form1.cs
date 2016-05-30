@@ -17,66 +17,43 @@ namespace Uppgift_8___Cirkusen
         {
             InitializeComponent();
         }
-
-        public BindingList<medlem> medlemlista = new BindingList<medlem>();
+        medlem m = new medlem();
 
         private void button1_Click(object sender, EventArgs e)
         {
+            groupBox2.Text = "Välj medlem:";
+            label1.Text = "Medlem:";
+            m.Visamedlamar();
 
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5433;User Id=administratör;Password=1234;Database=uppgift8_cirkus;");
+            listBox1.DisplayMember = "NamnDisplay";
+            listBox1.DataSource = m.medlemlista;
 
-            medlemlista.Clear();
+        }
 
-            try
-            {
-             
-                string sql = "SELECT * FROM medlem";
-                connect.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
-                NpgsqlDataReader dr = cmd.ExecuteReader();
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox1.DataSource = null;
+           
+        }
 
-                medlem m;
-                while (dr.Read())
-                {
-                    m = new medlem()
-                    {
-                        medlemsid = (int) dr["medlemsid"],
-                        förnamn = dr["förnamn"].ToString(),
-                        efternamn = dr["efternamn"].ToString()
-                    };
-                    medlemlista.Add(m);
-                    //MessageBox.Show(dr["förnamn"].ToString());
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
 
-                    listBox1.DisplayMember = "NamnDisplay";
-                    listBox1.DataSource = medlemlista;
-                }
-            }
-            catch (NpgsqlException ex)
-            {
-                if (ex.Code.Equals("28P01"))
-                {
-                    MessageBox.Show("Fel lösenord.");
-                }
-                if (ex.Code.Equals("42501"))
-                {
-                    MessageBox.Show("Användaren saknar nödvändiga rättigheter.");
-                }
-                else
-                {
-                    MessageBox.Show(ex.Code);
-                }
-                // MessageBox.Show(ex.Message);
+        private void rensalistaListB2_Click(object sender, EventArgs e)
+        {
+            listBox2.DataSource = null;
+        }
 
-            }
-            finally
-            {
-             
-                connect.Close();
-                
-            }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            groupBox2.Text = "Välj ledare:";
+            label1.Text = "Ledare:";
 
-
-
+            m.Visaledare();
+            listBox1.DisplayMember = "NamnDisplay";
+            listBox1.DataSource = m.medlemlista;
         }
     }
 }
