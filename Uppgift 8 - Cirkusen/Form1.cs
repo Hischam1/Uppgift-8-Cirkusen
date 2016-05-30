@@ -16,24 +16,37 @@ namespace Uppgift_8___Cirkusen
         public Form1()
         {
             InitializeComponent();
+
+            // EFFEKTER
+            groupBox2.Enabled = false;
+         
         }
         medlem m = new medlem();
+        aktivitet aktuellAktivitet = new aktivitet();
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
             groupBox2.Text = "Välj medlem:";
             label1.Text = "Medlem:";
-            m.Visamedlamar();
+            groupBox2.Enabled = true;
+            /* ledarecheckbox.Checked = false;
+             ledarecheckbox.Enabled = true;
+             sorteraCombobox.Enabled = true;
+             sorteralabel.Enabled = true;*/
 
+            m.Visamedlamar();
             listBox1.DisplayMember = "NamnDisplay";
             listBox1.DataSource = m.medlemlista;
+
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             listBox1.DataSource = null;
-           
+            groupBox2.Enabled = false;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -46,7 +59,22 @@ namespace Uppgift_8___Cirkusen
             listBox2.DataSource = null;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* m = (medlem)listBox1.SelectedItem;
+
+            if (m != null)
+            {
+               
+
+                listBox1.DisplayMember = "NamnDisplay";
+                listBox1.DataSource = m.medlemlista;
+
+            }*/
+        }
+
+        /*private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             groupBox2.Text = "Välj ledare:";
             label1.Text = "Ledare:";
@@ -54,6 +82,27 @@ namespace Uppgift_8___Cirkusen
             m.Visaledare();
             listBox1.DisplayMember = "NamnDisplay";
             listBox1.DataSource = m.medlemlista;
+        }*/
+
+        private void ledarecheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            if (ledarecheckbox.Checked)
+            {
+                groupBox2.Text = "Välj ledare:";
+                label1.Text = "Ledare:";
+
+            }
+
+        }
+
+        private void visaakt_Click(object sender, EventArgs e)
+        {
+            aktuellAktivitet.VisaAktivitet();
+
+            listBox2.DisplayMember = "aktivitetDisplay";
+            listBox2.DataSource = aktuellAktivitet.aktivitetslista;
         }
     }
 }

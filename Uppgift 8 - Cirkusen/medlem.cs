@@ -14,6 +14,8 @@ namespace Uppgift_8___Cirkusen
 {
     public class medlem
     {
+        BindingList<aktivitet> aktivitetlista = new BindingList<aktivitet>();
+
         public int medlemsid { get; set; }
         public string förnamn { get; set; }
         public string efternamn { get; set; }
@@ -136,5 +138,10 @@ namespace Uppgift_8___Cirkusen
             }
         }
 
+        public BindingList<aktivitet> HämtaAktivitetlista()
+        {
+            return aktivitetlista;
         }
+
+    }
 }
