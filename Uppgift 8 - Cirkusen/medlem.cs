@@ -25,20 +25,20 @@ namespace Uppgift_8___Cirkusen
         {
             get
             {
-                return medlemsid + " - " + förnamn + " " + efternamn + " " + "\t" + "|  " + träningsgruppsnamn;
+                return medlemsid + " - " + förnamn + " " + efternamn + " \t\t |  " + träningsgruppsnamn;
             }             
         }
         public BindingList<medlem> medlemlista = new BindingList<medlem>();
 
         public void Visamedlamar()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5433;User Id=administratör;Password=1234;Database=uppgift8_cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
 
             medlemlista.Clear();
 
             try
             {
-                string sql = "SELECT m.medlemsid,m.förnamn,m.efternamn,t.namn FROM medlem m,tillhör ti, träningsgrupper t WHERE m.medlemsid = ti.medlemsid AND ti.träningsgruppsid = t.träningsgruppsid";
+                string sql = "SELECT * FROM medlem";
                 connect.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -51,7 +51,7 @@ namespace Uppgift_8___Cirkusen
                         medlemsid = (int)dr["medlemsid"],
                         förnamn = dr["förnamn"].ToString(),
                         efternamn = dr["efternamn"].ToString(),
-                        träningsgruppsnamn = dr["namn"].ToString()
+                        //träningsgruppsnamn = dr["namn"].ToString()
 
                     };
                     medlemlista.Add(m);
@@ -85,7 +85,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void Visaledare()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5433;User Id=administratör;Password=1234;Database=uppgift8_cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
 
             medlemlista.Clear();
 

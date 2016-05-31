@@ -23,6 +23,7 @@ namespace Uppgift_8___Cirkusen
         }
         medlem m = new medlem();
         aktivitet aktuellAktivitet = new aktivitet();
+        träningsgrupper tr = new träningsgrupper();
         
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,10 +31,6 @@ namespace Uppgift_8___Cirkusen
             groupBox2.Text = "Välj medlem:";
             label1.Text = "Medlem:";
             groupBox2.Enabled = true;
-            /* ledarecheckbox.Checked = false;
-             ledarecheckbox.Enabled = true;
-             sorteraCombobox.Enabled = true;
-             sorteralabel.Enabled = true;*/
 
             m.Visamedlamar();
             listBox1.DisplayMember = "NamnDisplay";
@@ -92,6 +89,19 @@ namespace Uppgift_8___Cirkusen
             {
                 groupBox2.Text = "Välj ledare:";
                 label1.Text = "Ledare:";
+                m.Visaledare();
+                listBox1.DisplayMember = "NamnDisplay";
+                listBox1.DataSource = m.medlemlista;
+            }
+
+            else
+            {
+                groupBox2.Text = "Välj medlem:";
+                label1.Text = "Medlem:";
+
+                m.Visamedlamar();
+                listBox1.DisplayMember = "NamnDisplay";
+                listBox1.DataSource = m.medlemlista;
 
             }
 
@@ -103,6 +113,21 @@ namespace Uppgift_8___Cirkusen
 
             listBox2.DisplayMember = "aktivitetDisplay";
             listBox2.DataSource = aktuellAktivitet.aktivitetslista;
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tr.VisaTräningsgrupper();
+
+            m.Visamedlamar();
+            listBox3.DisplayMember = "TräningsgruppsDisplay";
+            listBox3.DataSource = tr.träningsgruppslista;
+
         }
     }
 }
