@@ -361,7 +361,7 @@ namespace Uppgift_8___Cirkusen
 
             try
             {
-                string sql = "SELECT a.aktivitetsid, t.namn, a.träningsgruppsid, a.beskrivning, a.datum, a.klockslag, a.plats FROM träningsgrupper t, aktivitet a WHERE t.träningsgruppsid = '" + träningsgruppsid + "' AND datum BETWEEN '" + datumfrån + "' and '" + datumtill + "'";
+                string sql = "SELECT a.aktivitetsid, t.namn, a.träningsgruppsid, a.beskrivning, a.datum, a.klockslag, a.plats FROM träningsgrupper t, aktivitet a WHERE t.träningsgruppsid = a.träningsgruppsid AND a.träningsgruppsid = '" + träningsgruppsid + "' AND datum BETWEEN '" + datumfrån + "' and '" + datumtill + "'";
                 connect.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
                 NpgsqlDataReader dr = cmd.ExecuteReader();

@@ -38,6 +38,8 @@ namespace Uppgift_8___Cirkusen
 
         public BindingList<medlem> medlemlista = new BindingList<medlem>();
         public BindingList<medlem> ledarlista = new BindingList<medlem>();
+        public BindingList<medlem> medlemslistaTOTAL = new BindingList<medlem>();
+        public BindingList<medlem> medlemslistaFrånSpecifikAktivitet = new BindingList<medlem>();
 
 
 
@@ -587,7 +589,7 @@ namespace Uppgift_8___Cirkusen
         {
             NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
 
-            medlemlista.Clear();
+            medlemslistaFrånSpecifikAktivitet.Clear();
             
             try
             {
@@ -607,7 +609,7 @@ namespace Uppgift_8___Cirkusen
                         personnr = (int)dr["personnr"]
 
                     };
-                    medlemlista.Add(m);
+                    medlemslistaFrånSpecifikAktivitet.Add(m);
 
                 }
             }
@@ -804,6 +806,58 @@ namespace Uppgift_8___Cirkusen
                 if (ex.Code.Equals("23505"))
                 {
                     MessageBox.Show("Medlemmen finns redan i den valda aktiviteten.");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Code);
+                }
+                // MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+
+                connect.Close();
+
+            }
+        }
+        public void VisaAllaMedlemmarITräningsgrupp(int träningsgruppsid)
+        {
+            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+
+            medlemslistaTOTAL.Clear();
+
+            try
+            {
+                string sql = "SELECT m.förnamn, m.efternamn, d.medlemsid, m.personnr FROM medlem m, deltar d, aktivitet a, träningsgrupper t WHERE m.medlemsid = d.medlemsid AND d.aktivitetsid = a.aktivitetsid AND t.träningsgruppsid = a.träningsgruppsid AND t.träningsgruppsid = '" + träningsgruppsid + "'"; ;
+                connect.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                medlem m;
+                while (dr.Read())
+                {
+                    m = new medlem()
+                    {
+                        medlemsid = (int)dr["medlemsid"],
+                        förnamn = dr["förnamn"].ToString(),
+                        efternamn = dr["efternamn"].ToString(),
+                        personnr = (int)dr["personnr"]
+
+                    };
+                    medlemslistaTOTAL.Add(m);
+
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                if (ex.Code.Equals("28P01"))
+                {
+                    MessageBox.Show("Fel lösenord.");
+                }
+                if (ex.Code.Equals("42501"))
+                {
+                    MessageBox.Show("Användaren saknar nödvändiga rättigheter.");
                 }
                 else
                 {

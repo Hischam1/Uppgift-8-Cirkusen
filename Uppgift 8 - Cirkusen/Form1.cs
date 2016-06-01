@@ -44,7 +44,8 @@ namespace Uppgift_8___Cirkusen
         private void button3_Click(object sender, EventArgs e)
         {
             listBox1.DataSource = null;
-            //groupBox2.Enabled = false;
+
+
 
         }
 
@@ -132,7 +133,6 @@ namespace Uppgift_8___Cirkusen
         private void button5_Click(object sender, EventArgs e)
         {
             tr.VisaTräningsgrupper();
-            groupBox4.Text = "Träningsgrupper:";
             listBox3.DisplayMember = "TräningsgruppsDisplay";
             listBox3.DataSource = tr.träningsgruppslista;
 
@@ -140,7 +140,12 @@ namespace Uppgift_8___Cirkusen
 
         private void button4_Click(object sender, EventArgs e)
         {
+            
+            listBox2.DataSource = null;
             listBox3.DataSource = null;
+            listBox4.DataSource = null;
+            listBox5.DataSource = null;
+            listBox7.DataSource = null;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -328,13 +333,16 @@ namespace Uppgift_8___Cirkusen
             {
                 m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
                 listBox4.DisplayMember = "NamnDisplay";
-                listBox4.DataSource = m.medlemlista;
+                listBox4.DataSource = m.medlemslistaFrånSpecifikAktivitet;
 
                 m.VisaSelectedAktivitetLedare(aktuellAktivitet.aktivitetsid);
                 listBox5.DisplayMember = "NamnDisplay";
                 listBox5.DataSource = m.ledarlista;
 
                 label7.Text = listBox4.Items.Count.ToString();
+
+                label10.Text = listBox2.Items.Count.ToString();
+                
 
 
 
@@ -352,6 +360,10 @@ namespace Uppgift_8___Cirkusen
                 listBox2.DisplayMember = "AktivitetDisplay";
                 listBox2.DataSource = aktuellAktivitet.aktivitetslista;
 
+                m.VisaAllaMedlemmarITräningsgrupp(tr.träningsgruppsid);
+                listBox7.DisplayMember = "NamnDisplay";
+                listBox7.DataSource = m.medlemslistaTOTAL;
+
                 //m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
                 //listBox4.DisplayMember = "NamnDisplay";
                 //listBox4.DataSource = m.medlemlista;
@@ -359,7 +371,7 @@ namespace Uppgift_8___Cirkusen
                 //m.VisaSelectedAktivitetLedare(aktuellAktivitet.aktivitetsid);
                 //listBox5.DisplayMember = "NamnDisplay";
                 //listBox5.DataSource = m.ledarlista;
-
+                label21.Text = listBox7.Items.Count.ToString();
 
             }
         }
@@ -423,7 +435,7 @@ namespace Uppgift_8___Cirkusen
                     m.VisaSelectedAktivitetLedare(aktuellAktivitet.aktivitetsid);
                     m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
                 listBox4.DisplayMember = "NamnDisplay";
-                listBox4.DataSource = m.medlemlista;
+                listBox4.DataSource = m.medlemslistaFrånSpecifikAktivitet;
 
             }
 
@@ -440,7 +452,7 @@ namespace Uppgift_8___Cirkusen
                 m.TaBortMedlemFrånAktivitet(m.medlemsid, aktuellAktivitet.aktivitetsid);
                 m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
                 listBox4.DisplayMember = "NamnDisplay";
-                listBox4.DataSource = m.medlemlista;
+                listBox4.DataSource = m.medlemslistaFrånSpecifikAktivitet;
 
             }
 
@@ -490,19 +502,19 @@ namespace Uppgift_8___Cirkusen
                 //listBox2.DisplayMember = "AktivitetDisplay";
                 //listBox2.DataSource = aktuellAktivitet.aktivitetslista;
 
-
+                
 
                 aktuellAktivitet.VisaAktivitetUtifrånDatum(tr.träningsgruppsid, FrånTextBox.Text, TillTextBox.Text);
                 listBox2.DisplayMember = "AktivitetDisplay";
                 listBox2.DataSource = aktuellAktivitet.aktivitetslista;
 
-                m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
-                listBox4.DisplayMember = "NamnDisplay";
-                listBox4.DataSource = m.medlemlista;
+                ////m.VisaSelectedAktivitetMedlem(aktuellAktivitet.aktivitetsid);
+                ////listBox4.DisplayMember = "NamnDisplay";
+                ////listBox4.DataSource = m.medlemslistaFrånSpecifikAktivitet;
 
-                m.VisaSelectedAktivitetLedare(aktuellAktivitet.aktivitetsid);
-                listBox5.DisplayMember = "NamnDisplay";
-                listBox5.DataSource = m.ledarlista;
+                ////m.VisaSelectedAktivitetLedare(aktuellAktivitet.aktivitetsid);
+                ////listBox5.DisplayMember = "NamnDisplay";
+                ////listBox5.DataSource = m.ledarlista;
 
 
                 //tr.VisaTräningsgrupper();
@@ -511,6 +523,22 @@ namespace Uppgift_8___Cirkusen
                 //listBox3.DataSource = tr.träningsgruppslista;
 
             }
+        }
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Utskrift sker");
+            
+        }
+
+        private void label7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

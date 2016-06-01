@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -42,11 +41,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.TillTextBox = new System.Windows.Forms.TextBox();
+            this.FrånTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
             this.visaakt = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -83,15 +83,13 @@
             this.button11 = new System.Windows.Forms.Button();
             this.BeskrivningTextBox = new System.Windows.Forms.TextBox();
             this.träningsgruppsidTextBox = new System.Windows.Forms.TextBox();
-            this.FrånTextBox = new System.Windows.Forms.TextBox();
-            this.TillTextBox = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.listBox7 = new System.Windows.Forms.ListBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -111,21 +109,11 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(441, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Hämta närvarorapport";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(708, 164);
+            this.button3.Location = new System.Drawing.Point(441, 162);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 23);
+            this.button3.Size = new System.Drawing.Size(95, 23);
             this.button3.TabIndex = 3;
             this.button3.Text = "Rensa lista";
             this.button3.UseVisualStyleBackColor = true;
@@ -144,7 +132,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(21, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(122, 268);
+            this.groupBox1.Size = new System.Drawing.Size(122, 251);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funktioner Medlem";
@@ -152,7 +140,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 150);
+            this.checkBox1.Location = new System.Drawing.Point(7, 144);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(59, 17);
             this.checkBox1.TabIndex = 19;
@@ -161,7 +149,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(7, 231);
+            this.button8.Location = new System.Drawing.Point(7, 225);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(109, 23);
             this.button8.TabIndex = 18;
@@ -171,7 +159,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(6, 202);
+            this.button7.Location = new System.Drawing.Point(6, 196);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(109, 23);
             this.button7.TabIndex = 17;
@@ -181,7 +169,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(7, 126);
+            this.textBox5.Location = new System.Drawing.Point(7, 120);
             this.textBox5.MaxLength = 11;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(109, 20);
@@ -190,7 +178,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(7, 100);
+            this.textBox6.Location = new System.Drawing.Point(7, 94);
             this.textBox6.MaxLength = 6;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(109, 20);
@@ -199,7 +187,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(6, 74);
+            this.textBox3.Location = new System.Drawing.Point(6, 68);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(109, 20);
             this.textBox3.TabIndex = 14;
@@ -207,7 +195,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(7, 173);
+            this.button6.Location = new System.Drawing.Point(7, 167);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(109, 23);
             this.button6.TabIndex = 13;
@@ -217,7 +205,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 48);
+            this.textBox2.Location = new System.Drawing.Point(6, 42);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(109, 20);
             this.textBox2.TabIndex = 12;
@@ -226,7 +214,7 @@
             // textBox1
             // 
             this.textBox1.AccessibleDescription = "";
-            this.textBox1.Location = new System.Drawing.Point(6, 22);
+            this.textBox1.Location = new System.Drawing.Point(6, 16);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(109, 20);
             this.textBox1.TabIndex = 11;
@@ -238,20 +226,45 @@
             this.groupBox3.Controls.Add(this.TillTextBox);
             this.groupBox3.Controls.Add(this.FrånTextBox);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.radioButton1);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.visaakt);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.listBox2);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(161, 383);
+            this.groupBox3.Location = new System.Drawing.Point(161, 265);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(553, 185);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Vald medlems aktiviteter:";
+            this.groupBox3.Text = "Vald träningsgrupps aktiviteter:";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(455, 17);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(98, 23);
+            this.button10.TabIndex = 21;
+            this.button10.Text = "Sök";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // TillTextBox
+            // 
+            this.TillTextBox.AccessibleDescription = "";
+            this.TillTextBox.Location = new System.Drawing.Point(340, 19);
+            this.TillTextBox.Name = "TillTextBox";
+            this.TillTextBox.Size = new System.Drawing.Size(109, 20);
+            this.TillTextBox.TabIndex = 20;
+            this.TillTextBox.Text = "2016-08-01";
+            // 
+            // FrånTextBox
+            // 
+            this.FrånTextBox.AccessibleDescription = "";
+            this.FrånTextBox.Location = new System.Drawing.Point(225, 19);
+            this.FrånTextBox.Name = "FrånTextBox";
+            this.FrånTextBox.Size = new System.Drawing.Size(109, 20);
+            this.FrånTextBox.TabIndex = 17;
+            this.FrånTextBox.Text = "2016-06-01";
             // 
             // label10
             // 
@@ -262,18 +275,6 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "Test";
             this.label10.Click += new System.EventHandler(this.label10_Click_1);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(158, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(56, 17);
-            this.radioButton1.TabIndex = 19;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Datum";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
             // 
             // label16
             // 
@@ -295,26 +296,15 @@
             this.visaakt.UseVisualStyleBackColor = true;
             this.visaakt.Click += new System.EventHandler(this.visaakt_Click);
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(99, 20);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(36, 17);
-            this.radioButton2.TabIndex = 18;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "ID";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged_1);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 20);
+            this.label4.Location = new System.Drawing.Point(153, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Sortera efter:";
+            this.label4.Text = "Sök datum:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // listBox2
             // 
@@ -350,14 +340,14 @@
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Location = new System.Drawing.Point(161, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(853, 191);
+            this.groupBox2.Size = new System.Drawing.Size(553, 191);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Välj medlem:";
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(542, 164);
+            this.button9.Location = new System.Drawing.Point(275, 162);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(160, 23);
             this.button9.TabIndex = 18;
@@ -367,9 +357,9 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(361, 164);
+            this.button12.Location = new System.Drawing.Point(132, 162);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(175, 23);
+            this.button12.Size = new System.Drawing.Size(137, 23);
             this.button12.TabIndex = 18;
             this.button12.Text = "Lägg till medlem i aktivitet";
             this.button12.UseVisualStyleBackColor = true;
@@ -387,7 +377,7 @@
             // ledarecheckbox
             // 
             this.ledarecheckbox.AutoSize = true;
-            this.ledarecheckbox.Location = new System.Drawing.Point(611, 25);
+            this.ledarecheckbox.Location = new System.Drawing.Point(477, 25);
             this.ledarecheckbox.Name = "ledarecheckbox";
             this.ledarecheckbox.Size = new System.Drawing.Size(59, 17);
             this.ledarecheckbox.TabIndex = 11;
@@ -442,7 +432,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(17, 63);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(789, 95);
+            this.listBox1.Size = new System.Drawing.Size(519, 95);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -462,18 +452,18 @@
             this.groupBox4.Controls.Add(this.listBox3);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Location = new System.Drawing.Point(161, 209);
+            this.groupBox4.Location = new System.Drawing.Point(720, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(853, 168);
+            this.groupBox4.Size = new System.Drawing.Size(299, 191);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Tillhör:";
+            this.groupBox4.Text = "Träningsgrupper:";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(172, 18);
+            this.label9.Location = new System.Drawing.Point(172, 43);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 13);
             this.label9.TabIndex = 18;
@@ -481,7 +471,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(17, 134);
+            this.button5.Location = new System.Drawing.Point(17, 162);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(109, 23);
             this.button5.TabIndex = 1;
@@ -492,16 +482,16 @@
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(17, 36);
+            this.listBox3.Location = new System.Drawing.Point(17, 63);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(789, 95);
+            this.listBox3.Size = new System.Drawing.Size(256, 95);
             this.listBox3.TabIndex = 1;
             this.listBox3.SelectedIndexChanged += new System.EventHandler(this.listBox3_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 20);
+            this.label6.Location = new System.Drawing.Point(14, 43);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 6;
@@ -509,7 +499,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(708, 134);
+            this.button4.Location = new System.Drawing.Point(175, 162);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(98, 23);
             this.button4.TabIndex = 3;
@@ -527,7 +517,7 @@
             this.groupBox5.Controls.Add(this.listBox4);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Location = new System.Drawing.Point(720, 382);
+            this.groupBox5.Location = new System.Drawing.Point(720, 264);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(294, 185);
             this.groupBox5.TabIndex = 11;
@@ -598,6 +588,7 @@
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 5;
             this.label7.Text = "Test";
+            this.label7.Click += new System.EventHandler(this.label7_Click_1);
             // 
             // label11
             // 
@@ -617,7 +608,7 @@
             this.groupBox6.Controls.Add(this.button11);
             this.groupBox6.Controls.Add(this.BeskrivningTextBox);
             this.groupBox6.Controls.Add(this.träningsgruppsidTextBox);
-            this.groupBox6.Location = new System.Drawing.Point(21, 382);
+            this.groupBox6.Location = new System.Drawing.Point(21, 264);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(122, 186);
             this.groupBox6.TabIndex = 19;
@@ -677,34 +668,6 @@
             this.träningsgruppsidTextBox.TabIndex = 11;
             this.träningsgruppsidTextBox.Text = "Träningsgruppsid";
             // 
-            // FrånTextBox
-            // 
-            this.FrånTextBox.AccessibleDescription = "";
-            this.FrånTextBox.Location = new System.Drawing.Point(227, 19);
-            this.FrånTextBox.Name = "FrånTextBox";
-            this.FrånTextBox.Size = new System.Drawing.Size(109, 20);
-            this.FrånTextBox.TabIndex = 17;
-            this.FrånTextBox.Text = "2016-06-01";
-            // 
-            // TillTextBox
-            // 
-            this.TillTextBox.AccessibleDescription = "";
-            this.TillTextBox.Location = new System.Drawing.Point(342, 19);
-            this.TillTextBox.Name = "TillTextBox";
-            this.TillTextBox.Size = new System.Drawing.Size(109, 20);
-            this.TillTextBox.TabIndex = 20;
-            this.TillTextBox.Text = "2016-08-01";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(455, 17);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(98, 23);
-            this.button10.TabIndex = 21;
-            this.button10.Text = "Hämta närvarorapport";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label19);
@@ -712,7 +675,7 @@
             this.groupBox7.Controls.Add(this.listBox7);
             this.groupBox7.Controls.Add(this.label21);
             this.groupBox7.Controls.Add(this.label22);
-            this.groupBox7.Location = new System.Drawing.Point(161, 573);
+            this.groupBox7.Location = new System.Drawing.Point(161, 455);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(553, 185);
             this.groupBox7.TabIndex = 12;
@@ -748,7 +711,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(155, 162);
+            this.label21.Location = new System.Drawing.Point(224, 162);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(28, 13);
             this.label21.TabIndex = 5;
@@ -759,15 +722,26 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(9, 162);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(81, 13);
+            this.label22.Size = new System.Drawing.Size(200, 13);
             this.label22.TabIndex = 4;
-            this.label22.Text = "Antal deltagare:";
+            this.label22.Text = "Antal deltagare totalt på samtliga tillfällen:";
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(729, 495);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(261, 108);
+            this.button13.TabIndex = 22;
+            this.button13.Text = "Skriv ut närvarorapport";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 838);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -798,7 +772,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -826,8 +799,6 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label8;
@@ -861,6 +832,7 @@
         private System.Windows.Forms.ListBox listBox7;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button13;
     }
 }
 
