@@ -23,6 +23,7 @@ namespace Uppgift_8___Cirkusen
         public int personnr { get; set; }
         public string telefon { get; set; }
         public int aktivitetsid { get; set; }
+        public string antal { get; set; }
         public int träningsgruppsid { get; set; }
         public string connectSQLadress = "Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;";
 
@@ -32,7 +33,7 @@ namespace Uppgift_8___Cirkusen
         {
             get
             {
-                return medlemsid + " - " + förnamn + " " + efternamn + " \t    " + personnr + " \t\t\t    " + medlemstyp;
+                return medlemsid + " - " + förnamn + " " + efternamn + " \t    " + personnr + " \t\t\t    " + medlemstyp + antal;
             }             
         }
 
@@ -828,7 +829,7 @@ namespace Uppgift_8___Cirkusen
 
             try
             {
-                string sql = "SELECT m.förnamn, m.efternamn, d.medlemsid, m.personnr FROM medlem m, deltar d, aktivitet a, träningsgrupper t WHERE m.medlemsid = d.medlemsid AND d.aktivitetsid = a.aktivitetsid AND t.träningsgruppsid = a.träningsgruppsid AND t.träningsgruppsid = '" + träningsgruppsid + "'"; ;
+                string sql = "SELECT m.förnamn, m.efternamn, d.medlemsid, m.personnr, COUNT(m.förnamn) as antal FROM medlem m, deltar d, aktivitet a, träningsgrupper t WHERE m.medlemsid = d.medlemsid AND d.aktivitetsid = a.aktivitetsid AND t.träningsgruppsid = a.träningsgruppsid AND t.träningsgruppsid = '" + träningsgruppsid + "' GROUP BY m.förnamn, m.efternamn, d.medlemsid, m.personnr ORDER BY antal DESC"; 
                 connect.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -841,7 +842,9 @@ namespace Uppgift_8___Cirkusen
                         medlemsid = (int)dr["medlemsid"],
                         förnamn = dr["förnamn"].ToString(),
                         efternamn = dr["efternamn"].ToString(),
-                        personnr = (int)dr["personnr"]
+                        personnr = (int)dr["personnr"],
+                        antal = dr["antal"].ToString()
+
 
                     };
                     medlemslistaTOTAL.Add(m);
