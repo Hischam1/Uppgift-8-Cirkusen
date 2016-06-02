@@ -24,6 +24,7 @@ namespace Uppgift_8___Cirkusen
         public string telefon { get; set; }
         public int aktivitetsid { get; set; }
         public int träningsgruppsid { get; set; }
+        public string connectSQLadress = "Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;";
 
 
 
@@ -35,17 +36,15 @@ namespace Uppgift_8___Cirkusen
             }             
         }
 
-
         public BindingList<medlem> medlemlista = new BindingList<medlem>();
         public BindingList<medlem> ledarlista = new BindingList<medlem>();
         public BindingList<medlem> medlemslistaTOTAL = new BindingList<medlem>();
         public BindingList<medlem> medlemslistaFrånSpecifikAktivitet = new BindingList<medlem>();
 
 
-
         public void Visamedlamar()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -100,9 +99,9 @@ namespace Uppgift_8___Cirkusen
         }
         public void Visaledare()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
-            medlemlista.Clear();
+            ledarlista.Clear();
 
             try
             {
@@ -124,7 +123,7 @@ namespace Uppgift_8___Cirkusen
                         telefon = dr["telefon"].ToString()
 
                     };
-                    medlemlista.Add(m);
+                    ledarlista.Add(m);
                     //MessageBox.Show(dr["förnamn"].ToString());
 
 
@@ -156,7 +155,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisamedlamarSorteraNamn()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -212,7 +211,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisamedlamarSorteraMedlemstyp()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -268,7 +267,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisamedlamarSorteraLedareNamn()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -323,7 +322,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisamedlamarSorteraLedareMedlemstyp()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -378,7 +377,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void LäggTillMedlem(string förnamn, string efternamn, string medlemstyp, int personnr, string telefon)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -386,7 +385,7 @@ namespace Uppgift_8___Cirkusen
 
             try
             {
-                string sql = "INSERT INTO medlem (medlemsid, förnamn, efternamn, medlemstyp, personnr, telefon) VALUES ('" + random.Next(1000) + "', '" + förnamn +"', '"+ efternamn +"', '"+ medlemstyp + "', '" + personnr + "', '" + telefon + "')";
+                string sql = "INSERT INTO medlem (medlemsid, förnamn, efternamn, medlemstyp, personnr, telefon, ledare) VALUES ('" + random.Next(1000) + "', '" + förnamn +"', '"+ efternamn +"', '"+ medlemstyp + "', '" + personnr + "', '" + telefon + "', FALSE)";
                 connect.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -418,9 +417,9 @@ namespace Uppgift_8___Cirkusen
         }
         public void LäggTillLedare(string förnamn, string efternamn, string medlemstyp, int personnr, string telefon)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
-            medlemlista.Clear();
+            ledarlista.Clear();
 
             Random random = new Random();
 
@@ -458,7 +457,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void UppdateraMedlem(string förnamn, string efternamn, string medlemstyp, int personnr, string telefon)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -498,7 +497,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void TaBortMedlem(int medlemsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -544,7 +543,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void TaBortLedare(int medlemsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -587,7 +586,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaSelectedAktivitetMedlem(int aktivitetsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemslistaFrånSpecifikAktivitet.Clear();
             
@@ -639,7 +638,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaSelectedAktivitetLedare(int aktivitetsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             ledarlista.Clear();
 
@@ -691,7 +690,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void LäggTillMedlemIAktivitet(int medlemsid, int aktivitetsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -735,7 +734,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void TaBortMedlemFrånAktivitet(int medlemsid, int aktivitetsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemlista.Clear();
 
@@ -779,7 +778,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void LäggTillLedareIAktivitet(int medlemsid, int träningsgruppsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             ledarlista.Clear();
 
@@ -823,7 +822,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaAllaMedlemmarITräningsgrupp(int träningsgruppsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             medlemslistaTOTAL.Clear();
 

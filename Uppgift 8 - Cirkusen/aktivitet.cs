@@ -27,6 +27,7 @@ namespace Uppgift_8___Cirkusen
         public int antal { get; set; }
         public string datumfrån { get; set; }
         public string datumtill { get; set; }
+        public string connectSQLadress = "Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;";
 
 
         public string aktivitetDisplay
@@ -35,15 +36,16 @@ namespace Uppgift_8___Cirkusen
             {
                 return aktivitetsid + " - " + träningsgruppsnamn + "\t " + beskrivning + "\t " + datum + " - " + klockslag + " - " + plats + "\t " + förnamn + " " + efternamn;
             }
-
         }
 
-
         public BindingList<aktivitet> aktivitetslista = new BindingList<aktivitet>();
+        public BindingList<aktivitet> medlemsaktivitetslista = new BindingList<aktivitet>();
+        public BindingList<aktivitet> aktivitetslistaResultat = new BindingList<aktivitet>();
+        public BindingList<aktivitet> medlemsaktivitetslistaResultat = new BindingList<aktivitet>();
 
         public void VisaAktivitet()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             aktivitetslista.Clear();
 
@@ -98,7 +100,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaAktivitetSorteraID()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             aktivitetslista.Clear();
 
@@ -153,7 +155,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaAktivitetSorteraDatum()
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             aktivitetslista.Clear();
 
@@ -208,7 +210,7 @@ namespace Uppgift_8___Cirkusen
         }
         public int RäknaSelectedAktivitet(int träningsgruppsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             //aktivitetslista.Clear();
 
@@ -261,7 +263,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void LäggTillAktivitet(int träningsgruppsid, string beskrivning, string datum, string klockslag, string plats)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             aktivitetslista.Clear();
 
@@ -301,7 +303,7 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaSelectedTräningsgruppAktivitet(int träningsgruppsid)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
             aktivitetslista.Clear();
 
@@ -355,9 +357,9 @@ namespace Uppgift_8___Cirkusen
         }
         public void VisaAktivitetUtifrånDatum(int träningsgruppsid, string datumfrån, string datumtill)
         {
-            NpgsqlConnection connect = new NpgsqlConnection("Server=localhost;Port=5432;User Id=administratör;Password=1234;Database=cirkus;");
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
 
-            aktivitetslista.Clear();
+            aktivitetslistaResultat.Clear();
 
             try
             {
@@ -380,7 +382,7 @@ namespace Uppgift_8___Cirkusen
                         plats = dr["plats"].ToString()
 
                     };
-                    aktivitetslista.Add(akt);
+                    aktivitetslistaResultat.Add(akt);
 
                 }
             }
@@ -408,6 +410,115 @@ namespace Uppgift_8___Cirkusen
 
             }
 
+        }
+        public void VisaAktivitetUtifrånDatumMedlem(int medlemsid, string datumfrån, string datumtill)
+        {
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
+
+            medlemsaktivitetslistaResultat.Clear();
+
+            try
+            {
+                string sql = "SELECT a.aktivitetsid, t.namn, a.beskrivning, a.datum, a.klockslag, a.plats FROM träningsgrupper t, aktivitet a, deltar d, medlem m WHERE t.träningsgruppsid = a.träningsgruppsid AND a.aktivitetsid = d.aktivitetsid AND d.medlemsid = m.medlemsid AND d.medlemsid = '" + medlemsid + "' AND datum BETWEEN '" + datumfrån + "'  and '" + datumtill + "'";
+                connect.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                aktivitet akt;
+                while (dr.Read())
+                {
+                    akt = new aktivitet()
+                    {
+                        aktivitetsid = (int)dr["aktivitetsid"],
+                        träningsgruppsnamn = dr["namn"].ToString(),
+                        beskrivning = dr["beskrivning"].ToString(),
+                        datum = dr["datum"].ToString(),
+                        klockslag = dr["klockslag"].ToString(),
+                        plats = dr["plats"].ToString()
+
+                    };
+                    medlemsaktivitetslistaResultat.Add(akt);
+
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                if (ex.Code.Equals("28P01"))
+                {
+                    MessageBox.Show("Fel lösenord.");
+                }
+                if (ex.Code.Equals("42501"))
+                {
+                    MessageBox.Show("Användaren saknar nödvändiga rättigheter.");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Code);
+                }
+                // MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+
+                connect.Close();
+
+            }
+
+        }
+        public void VisaSelectedMedlemsAktiviteter(int medlemsid)
+        {
+            NpgsqlConnection connect = new NpgsqlConnection(connectSQLadress);
+
+            medlemsaktivitetslista.Clear();
+
+            try
+            {
+                string sql = "SELECT a.aktivitetsid, t.namn, a.beskrivning, a.datum, a.klockslag, a.plats FROM aktivitet a, deltar d, medlem m, träningsgrupper t WHERE d.aktivitetsid = a.aktivitetsid AND m.medlemsid = d.medlemsid AND t.träningsgruppsid = a.träningsgruppsid AND m.medlemsid = '" + medlemsid + "'";
+                connect.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                aktivitet akt;
+                while (dr.Read())
+                {
+                    akt = new aktivitet()
+                    {
+                        aktivitetsid = (int)dr["aktivitetsid"],
+                        träningsgruppsnamn = dr["namn"].ToString(),
+                        beskrivning = dr["beskrivning"].ToString(),
+                        datum = dr["datum"].ToString(),
+                        klockslag = dr["klockslag"].ToString(),
+                        plats = dr["plats"].ToString()
+
+                    };
+                    medlemsaktivitetslista.Add(akt);
+
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                if (ex.Code.Equals("28P01"))
+                {
+                    MessageBox.Show("Fel lösenord.");
+                }
+                if (ex.Code.Equals("42501"))
+                {
+                    MessageBox.Show("Användaren saknar nödvändiga rättigheter.");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Code);
+                }
+                // MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+
+                connect.Close();
+
+            }
         }
     }
 }
